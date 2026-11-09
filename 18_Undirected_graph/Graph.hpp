@@ -15,12 +15,15 @@ public:
 
     bool hasEdge(const T& v1, const T& v2) const;
 
-    void BFS(const T& v) const;
+    void BFS(const T& start) const;
+    void DFS(const T& start) const;
 private:
     std::vector<T> vertices;
     std::vector<std::vector<int>> adjacency_list;
 
     int searchVertexIndex(const T& value) const;
+
+    void DFSExplore(int index, std::vector<bool>& visited) const;
 };
 
 #include "Graph.tpp"

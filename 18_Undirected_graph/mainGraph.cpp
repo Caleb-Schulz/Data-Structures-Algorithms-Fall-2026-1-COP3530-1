@@ -21,6 +21,7 @@ int main(void) {
     friends.print();
 
     friends.BFS("Ross");
+    friends.DFS("Ross");
 
     return 0;
 }

@@ -126,3 +126,28 @@ void Graph<T>::BFS(const T& start) const {
     }
     std::cout << std::endl;
 }
+
+
+template <typename T>
+void Graph<T>::DFS(const T& start) const {
+    int start_index = searchVertexIndex(start);
+
+    if (start_index == -1) {
+        std::cout << "DFS: incorrect start vertex\n";
+    }
+
+    std::cout << "DSF: ";
+    std::vector<bool> visited(vertices.size(), false);
+
+    DFSExplore(index, visited);
+}
+
+template <typename T>
+void Graph<T>::DFSExplore(int index, std::vector<bool>& visited) const{
+    visited[index] = true;
+    std::cout << vertices[index];
+
+    for(int neighbor : adjacency_list[index]) {
+        DFSExplore(neighbor, visited);
+    }
+}
