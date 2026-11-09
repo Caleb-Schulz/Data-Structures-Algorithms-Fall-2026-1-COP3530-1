@@ -102,3 +102,19 @@ void HashMap<T>::remove(int key) {
     data[index] = HashNode<T>::makeDeleted();
     size--;
 }
+
+
+template <typename T>
+void HashMap<T>::update(int key, const T& value) {
+    int index = searchIndex(key);
+
+    if (index == -1) {
+        throw std::out_of_range("search: key not found");
+    }
+    data[index] = HashNode(key, value);
+}
+
+template <typename T>
+bool HashMap<T>::contains(int key) {
+    return !(searchIndex(key)==-1);
+}

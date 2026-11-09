@@ -17,6 +17,9 @@ public:
 
     void remove(int key);
 
+    void update(int key, const T& value);
+    bool contains(int key);
+
 private:
     std::vector<HashNode<T>> data;
     int size; // The number of records in the table

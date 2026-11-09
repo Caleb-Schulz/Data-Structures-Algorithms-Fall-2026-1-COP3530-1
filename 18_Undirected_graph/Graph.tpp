@@ -102,6 +102,7 @@ void Graph<T>::BFS(const T& start) const {
 
     if (start_index == -1) {
         std::cout << "BFS: incorrect start vertex\n";
+        return;
     }
 
     std::cout << "BSF: ";
@@ -134,20 +135,24 @@ void Graph<T>::DFS(const T& start) const {
 
     if (start_index == -1) {
         std::cout << "DFS: incorrect start vertex\n";
+        return;
     }
 
     std::cout << "DSF: ";
     std::vector<bool> visited(vertices.size(), false);
 
-    DFSExplore(index, visited);
+    DFSExplore(start_index, visited);
+    std::cout << std::endl;
 }
 
 template <typename T>
 void Graph<T>::DFSExplore(int index, std::vector<bool>& visited) const{
     visited[index] = true;
-    std::cout << vertices[index];
+    std::cout << vertices[index] << " ";
 
     for(int neighbor : adjacency_list[index]) {
-        DFSExplore(neighbor, visited);
+        if (!visited[neighbor]) {
+            DFSExplore(neighbor, visited);
+        }
     }
 }

@@ -18,5 +18,9 @@ int main(void) {
    map.remove(15);
    map.print();
 
+   map.update(8, "d");
+   std::cout << "has 8: " << map.contains(8) << std::endl;
+   map.print();
+
     return 0;
 }
