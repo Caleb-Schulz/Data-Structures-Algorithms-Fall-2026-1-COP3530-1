@@ -15,6 +15,8 @@ public:
 
     bool hasEdge(const T& v1, const T& v2) const;
 
+    bool isConnected() const;
+
     void BFS(const T& start) const;
     void DFS(const T& start) const;
 private:
@@ -23,7 +25,7 @@ private:
 
     int searchVertexIndex(const T& value) const;
 
-    void DFSExplore(int index, std::vector<bool>& visited) const;
+    void DFSExplore(int index, std::vector<bool>& visited, bool print = true) const;
 };
 
 #include "Graph.tpp"

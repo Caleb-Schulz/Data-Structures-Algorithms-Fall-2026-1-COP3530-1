@@ -23,5 +23,14 @@ int main(void) {
     friends.BFS("Ross");
     friends.DFS("Ross");
 
+    std::cout << "isConnected: " << friends.isConnected() << std::endl;
+    
+    friends.insertEdge("Rachel","Phoebe");
+
+    std::cout << "isConnected: " << friends.isConnected() << std::endl;
+
+    friends.BFS("Ross");
+    friends.DFS("Ross");
+    
     return 0;
 }

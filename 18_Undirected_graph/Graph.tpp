@@ -146,13 +146,34 @@ void Graph<T>::DFS(const T& start) const {
 }
 
 template <typename T>
-void Graph<T>::DFSExplore(int index, std::vector<bool>& visited) const{
+void Graph<T>::DFSExplore(int index, std::vector<bool>& visited, bool print) const{
     visited[index] = true;
-    std::cout << vertices[index] << " ";
+
+    if (print) {
+        std::cout << vertices[index] << " ";
+    }
 
     for(int neighbor : adjacency_list[index]) {
         if (!visited[neighbor]) {
             DFSExplore(neighbor, visited);
         }
     }
+}
+
+template <typename T>
+bool Graph<T>::isConnected() const {
+    if (vertices.empty()) {
+        return true;
+    }
+
+    std::vector<bool> visited(vertices.size(), false);
+
+    DFSExplore(0, visited, false);
+
+    for (bool v : visited) {
+        if (!v) {
+            return false;
+        }
+    }
+    return true;
 }
