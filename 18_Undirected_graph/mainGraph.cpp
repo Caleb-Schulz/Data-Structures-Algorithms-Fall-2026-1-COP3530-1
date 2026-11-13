@@ -31,6 +31,8 @@ int main(void) {
 
     friends.BFS("Ross");
     friends.DFS("Ross");
-    
+
+    std::cout << "shortestPath: " << friends.shortestPath("Ross", "Rachel") << std::endl;
+
     return 0;
 }

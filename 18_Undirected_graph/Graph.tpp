@@ -155,7 +155,7 @@ void Graph<T>::DFSExplore(int index, std::vector<bool>& visited, bool print) con
 
     for(int neighbor : adjacency_list[index]) {
         if (!visited[neighbor]) {
-            DFSExplore(neighbor, visited);
+            DFSExplore(neighbor, visited, print);
         }
     }
 }
@@ -176,4 +176,42 @@ bool Graph<T>::isConnected() const {
         }
     }
     return true;
+}
+
+template <typename T>
+int Graph<T>::shortestPath(const T& start, const T& end) const {
+    int start_index = searchVertexIndex(start);
+    int end_index = searchVertexIndex(end);
+
+    if (start_index == -1 || end_index == -1) {
+        std::cout << "shortestPath: incorrect vertices\n";
+        return -1;
+    }
+
+    if (start == end) {
+        return 0;
+    }
+
+    std::queue<int> q;
+    std::vector<int> distances(vertices.size(), -1);
+
+    q.push(start_index);
+    distances[start_index] = 0;
+
+    while(!q.empty()) {
+        int current_index = q.front();
+        q.pop();
+
+        for(int neighbor : adjacency_list[current_index]) {
+            if(!distances[neighbor] == -1) {
+                distances[neighbor] = distances[current_index] + 1;
+                q.push(neighbor);
+
+                if (neighbor == end_index) {
+                    return distances[neighbor];
+                }
+            }
+        }
+    }
+    return -1;
 }
